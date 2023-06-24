@@ -18,6 +18,18 @@ class UsersController {
       return res.status(500).json({ message: 'Something went wrong try again later!' })
     }
   }
+
+  public store = async (req: Request, res: Response): Promise<Response> => {
+    try {
+      const { email, password, name } = req.body;
+      const { code, message } = await this._usersService.store({ email, password, name });
+      if (code !== 200) return res.status(code).json({ message })
+      return res.status(code).json({ message })
+    } catch (error) {
+      console.log('error', error)
+      return res.status(500).json({ message: 'Something went wrong try again later!' })
+    }
+  }
 }
 
 export default UsersController;

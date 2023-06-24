@@ -1,8 +1,14 @@
-export interface IUsers extends Document {
+export interface IUsers {
   id: string;
   name: string;
   email: string;
   password: string;
-  updatedAt: Date;
-  createdAt: Date;
+  updatedAt: string;
+  createdAt: string;
+}
+
+export interface IUserRegister {
+  name: string;
+  email: string;
+  password: string;
 }

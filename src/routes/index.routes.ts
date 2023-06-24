@@ -10,4 +10,7 @@ router.get('/', (_req: Request, res: Response) => res.status(200).json({ message
 // Login
 router.post('/login', usersController.find)
 
+// Register
+router.post('/register', usersController.store)
+
 export default router;

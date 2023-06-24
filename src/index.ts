@@ -7,5 +7,5 @@ app.use(express.json())
 app.use(router)
 
 app.listen(process.env.PORT, () => {
-  console.log('Application started on port 3000!');
+  console.log('Application started on port 3003!');
 });

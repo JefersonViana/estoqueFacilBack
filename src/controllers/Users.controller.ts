@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import UsersService from "../service/Users.service";
 import { ValidatedRequest } from "express-joi-validation";
-import { IBodyLoginRequest } from "../Interfaces/usersInterface";
+import { IBodyLoginRequest, IBodyRegisterRequest } from "../Interfaces/usersInterface";
 
 class UsersController {
   private _usersService: UsersService
@@ -21,7 +21,7 @@ class UsersController {
     }
   }
 
-  public store = async (req: Request, res: Response): Promise<Response> => {
+  public store = async (req: ValidatedRequest<IBodyRegisterRequest>, res: Response): Promise<Response> => {
     try {
       const { email, password, name } = req.body;
       const { code, message } = await this._usersService.store({ email, password, name });

@@ -17,7 +17,15 @@ export interface IUserRegister {
 
 export interface IBodyLoginRequest extends ValidatedRequestSchema {
   [ContainerTypes.Body]: {
-    email: string,
-    password: string
+    email: string;
+    password: string;
+  }
+}
+
+export interface IBodyRegisterRequest extends ValidatedRequestSchema {
+  [ContainerTypes.Body]: {
+    name: string;
+    email: string;
+    password: string;
   }
 }

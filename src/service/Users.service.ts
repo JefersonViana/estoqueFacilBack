@@ -19,9 +19,11 @@ class UsersService {
 
   public store = async ({ name, email, password }: IUserRegister): Promise<IResponseObj> => {
     const didUserExists = await this._userModel.find({ email });
-    if (didUserExists.length) return { code: 409, message: 'Email already registered!' }
-    const userDb = buildUserToDb({ name, email, password })
-    const didCreate = await this._userModel.create(userDb)
+    if (didUserExists.length) return { code: 409, message: 'Email already registered!' };
+    const userDb = await buildUserToDb({ name, email, password });
+    const didCreate = await this._userModel.create(userDb);
+    if (!didCreate) return { code: 500, message: 'Something went wrong! Try again later.' }
+    return { code: 200, message: 'User created successfully!' }
   }
 }
 

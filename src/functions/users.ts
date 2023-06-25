@@ -1,4 +1,4 @@
-import { IUserRegister, IUsers } from "../Interfaces/usersInterface";
+import { IUpdateUser, IUserRegister, IUsers } from "../Interfaces/usersInterface";
 import bcrypt from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -31,4 +31,11 @@ export const buildUserToDb = async ({ name, email, password }: IUserRegister)  =
 export const checkUser = (pass: string, hash: string): boolean => {
   const isValid = bcrypt.compareSync(pass, hash)
   return isValid
+}
+
+export const buildUpdateUser = async (user: IUpdateUser): Promise<Partial<IUsers>> => {
+  const finalObj = {} as Partial<IUsers>
+  if (user.password) finalObj.password = await hashPassword(user.password)
+  finalObj.updatedAt = new Date().toISOString()
+  return { ...user, ...finalObj }
 }

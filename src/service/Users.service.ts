@@ -1,8 +1,9 @@
 import { Model } from "mongoose";
 import UsersModel from "../models/Users.model";
-import { IUserRegister, IUsers } from "../Interfaces/usersInterface";
+import { IUpdateUser, IUserRegister, IUsers } from "../Interfaces/usersInterface";
 import { IResponseObj } from "../Interfaces/errorsInterface";
-import { buildUserToDb, checkUser } from "src/functions/users";
+import { buildUpdateUser, buildUserToDb, checkUser } from "../functions/users";
+import { safeUser } from "../auth";
 
 class UsersService {
   private _userModel: Model<IUsers>;
@@ -14,7 +15,8 @@ class UsersService {
     const userFound = await this._userModel.find({ email });
     if (!userFound.length) return { code: 404, message: 'User not Found!' };
     if (!checkUser(password, userFound[0].password)) return { code: 400, message: 'Email or password incorrect!' }
-    return { code: 200, message: userFound };
+    const token = safeUser(userFound[0])
+    return { code: 200, token };
   }
 
   public store = async ({ name, email, password }: IUserRegister): Promise<IResponseObj> => {
@@ -23,7 +25,15 @@ class UsersService {
     const userDb = await buildUserToDb({ name, email, password });
     const didCreate = await this._userModel.create(userDb);
     if (!didCreate) return { code: 500, message: 'Something went wrong! Try again later.' }
-    return { code: 200, message: 'User created successfully!' }
+    const token = safeUser(didCreate)
+    return { code: 200, token }
+  }
+
+  public update = async (id: string, user: IUpdateUser): Promise<IResponseObj> => {
+    const updateObj = await buildUpdateUser(user)
+    const result = await this._userModel.findOneAndUpdate({ id }, updateObj, { new: true })
+    const token = safeUser(result)
+    return { code: 200, token }
   }
 }
 

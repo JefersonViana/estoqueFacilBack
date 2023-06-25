@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import UsersService from "../service/Users.service";
+import { ValidatedRequest } from "express-joi-validation";
+import { IBodyLoginRequest } from "../Interfaces/usersInterface";
 
 class UsersController {
   private _usersService: UsersService
@@ -7,7 +9,7 @@ class UsersController {
     this._usersService = new UsersService()
   }
 
-  public find = async (req: Request, res: Response): Promise<Response> => {
+  public find = async (req: ValidatedRequest<IBodyLoginRequest>, res: Response): Promise<Response> => {
     try {
       const { email, password } = req.body;
       const { code, message } = await this._usersService.find(email, password);

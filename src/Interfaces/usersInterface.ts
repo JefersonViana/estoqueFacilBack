@@ -1,3 +1,5 @@
+import { ContainerTypes, ValidatedRequestSchema } from "express-joi-validation";
+
 export interface IUsers {
   id: string;
   name: string;
@@ -11,4 +13,11 @@ export interface IUserRegister {
   name: string;
   email: string;
   password: string;
+}
+
+export interface IBodyLoginRequest extends ValidatedRequestSchema {
+  [ContainerTypes.Body]: {
+    email: string,
+    password: string
+  }
 }

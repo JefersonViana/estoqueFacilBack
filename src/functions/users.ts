@@ -1,9 +1,6 @@
-import { IUserRegister, IUsers } from "../Interfaces/usersInterface";
+import { IUpdateUser, IUserRegister, IUsers } from "../Interfaces/usersInterface";
 import bcrypt from 'bcryptjs';
 import { v4 as uuidv4 } from 'uuid';
-import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
-dotenv.config();
 
 const hashPassword = (pass: string): Promise<string> => {
   return new Promise<string>((resolve, reject) => {
@@ -36,11 +33,9 @@ export const checkUser = (pass: string, hash: string): boolean => {
   return isValid
 }
 
-export const safeUser = (user: IUsers): string => {
-  const token = jwt.sign(
-    { user: user.name, email: user.email, id: user.id, lastUpdate: user.updatedAt, memberSince: user.createdAt },
-    `${process.env.SECRET}`,
-    { algorithm: 'HS256', expiresIn: '24h' }
-  )
-  return token
+export const buildUpdateUser = async (user: IUpdateUser): Promise<Partial<IUsers>> => {
+  const finalObj = {} as Partial<IUsers>
+  if (user.password) finalObj.password = await hashPassword(user.password)
+  finalObj.updatedAt = new Date().toISOString()
+  return { ...user, ...finalObj }
 }

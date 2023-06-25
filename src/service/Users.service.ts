@@ -1,8 +1,9 @@
 import { Model } from "mongoose";
 import UsersModel from "../models/Users.model";
-import { IUserRegister, IUsers } from "../Interfaces/usersInterface";
+import { IUpdateUser, IUserRegister, IUsers } from "../Interfaces/usersInterface";
 import { IResponseObj } from "../Interfaces/errorsInterface";
-import { buildUserToDb, checkUser, safeUser } from "../functions/users";
+import { buildUpdateUser, buildUserToDb, checkUser } from "../functions/users";
+import { safeUser } from "../auth";
 
 class UsersService {
   private _userModel: Model<IUsers>;
@@ -25,6 +26,13 @@ class UsersService {
     const didCreate = await this._userModel.create(userDb);
     if (!didCreate) return { code: 500, message: 'Something went wrong! Try again later.' }
     const token = safeUser(didCreate)
+    return { code: 200, token }
+  }
+
+  public update = async (id: string, user: IUpdateUser): Promise<IResponseObj> => {
+    const updateObj = await buildUpdateUser(user)
+    const result = await this._userModel.findOneAndUpdate({ id }, updateObj, { new: true })
+    const token = safeUser(result)
     return { code: 200, token }
   }
 }

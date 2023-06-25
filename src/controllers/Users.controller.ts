@@ -12,9 +12,9 @@ class UsersController {
   public find = async (req: ValidatedRequest<IBodyLoginRequest>, res: Response): Promise<Response> => {
     try {
       const { email, password } = req.body;
-      const { code, message } = await this._usersService.find(email, password);
+      const { code, message, token } = await this._usersService.find(email, password);
       if (code !== 200) return res.status(code).json({ message })
-      return res.status(code).json({ message })
+      return res.status(code).json({ token })
     } catch (error) {
       console.log('error', error)
       return res.status(500).json({ message: 'Something went wrong try again later!' })
@@ -24,9 +24,9 @@ class UsersController {
   public store = async (req: ValidatedRequest<IBodyRegisterRequest>, res: Response): Promise<Response> => {
     try {
       const { email, password, name } = req.body;
-      const { code, message } = await this._usersService.store({ email, password, name });
+      const { code, message, token } = await this._usersService.store({ email, password, name });
       if (code !== 200) return res.status(code).json({ message })
-      return res.status(code).json({ message })
+      return res.status(code).json({ token })
     } catch (error) {
       console.log('error', error)
       return res.status(500).json({ message: 'Something went wrong try again later!' })

@@ -1,5 +1,5 @@
 import { ICurrentUser, IUsers } from "../Interfaces/usersInterface";
-import jwt, { JwtPayload } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { NextFunction, Request, Response } from "express";
 dotenv.config();

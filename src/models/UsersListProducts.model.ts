@@ -1,5 +1,4 @@
 import { Schema, SchemaDefinitionProperty, model } from "mongoose";
-import { IUsers } from "../Interfaces/usersInterface";
 import { IProduct, IUsersList } from "../Interfaces/usersListProductsInterface";
 
 const UsersListProductsSchema = new Schema<IUsersList>({

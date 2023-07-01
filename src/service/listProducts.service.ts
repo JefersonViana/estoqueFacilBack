@@ -1,11 +1,11 @@
 import { Model } from "mongoose";
-import { IProduct, IUsersList } from "../Interfaces/listProductsInterface";
+import { IProduct, IListProduct } from "../Interfaces/listProductsInterface";
 import ListProductsModel from "../models/listProducts.model";
 import { IResponseObj } from "../Interfaces/errorsInterface";
 import { v4 as uuidv4 } from "uuid";
 
 class ListProductsService {
-  private _listProductsModel: Model<IUsersList>;
+  private _listProductsModel: Model<IListProduct>;
   constructor() {
     this._listProductsModel = ListProductsModel;
   }

@@ -1,8 +1,9 @@
 import { IUsers } from "./usersInterface";
-import { IUsersList } from "./listProductsInterface";
+import { IListProduct } from "./listProductsInterface";
+import { ISectionObj } from "./sectionsInterface";
 
 export interface IResponseObj {
   code: number;
-  message?: string | IUsers[] | IUsers | IUsersList[];
+  message?: string | IUsers[] | IUsers | IListProduct[] | ISectionObj[];
   token?: string;
 }

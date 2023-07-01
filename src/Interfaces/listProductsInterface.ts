@@ -7,7 +7,7 @@ export interface IProduct {
   quantity: number;
 }
 
-export interface IUsersList {
+export interface IListProduct {
   userId: string;
   uuidv: string;
   productsList: IProduct[];

@@ -1,5 +1,5 @@
 import { IUsers } from "./usersInterface";
-import { IUsersList } from "./usersListProductsInterface";
+import { IUsersList } from "./listProductsInterface";
 
 export interface IResponseObj {
   code: number;

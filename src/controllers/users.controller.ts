@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import UsersService from "../service/Users.service";
+import UsersService from "../service/users.service";
 import { ValidatedRequest } from "express-joi-validation";
 import { IBodyLoginRequest, IBodyRegisterRequest, IUpdateRequest } from "../Interfaces/usersInterface";
 

@@ -1,5 +1,5 @@
 import { Model } from "mongoose";
-import UsersModel from "../models/Users.model";
+import UsersModel from "../models/users.model";
 import { IUpdateUser, IUserRegister, IUsers } from "../Interfaces/usersInterface";
 import { IResponseObj } from "../Interfaces/errorsInterface";
 import { buildUpdateUser, buildUserToDb, checkUser } from "../functions/users";

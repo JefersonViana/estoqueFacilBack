@@ -1,17 +1,17 @@
 import { Request, Response } from "express";
-import UsersListProductsService from "../service/UsersListProducts.service";
+import ListProductsService from "../service/listProducts.service";
 import { ValidatedRequest } from "express-joi-validation";
-import { IParamsProductsRequest } from "../middlewares/usersListValidator";
+import { IParamsProductsRequest } from "../middlewares/listValidator";
 
-class UsersListProductsController {
-  private usersListProductsService: UsersListProductsService;
+class ListProductsController {
+  private listProductsService: ListProductsService;
   constructor() {
-    this.usersListProductsService = new UsersListProductsService();
+    this.listProductsService = new ListProductsService();
   }
   public findProducts = async (req: ValidatedRequest<IParamsProductsRequest>, res: Response): Promise<Response> => {
     try { 
       const { userId } = req.params;
-      const { code, message  } = await this.usersListProductsService.findProducts(userId)
+      const { code, message  } = await this.listProductsService.findProducts(userId)
       if (code !== 200) return res.status(code).json({ message });
       return res.status(code).json({ message });
     } catch (error) {
@@ -20,4 +20,4 @@ class UsersListProductsController {
   }
 }
 
-export default UsersListProductsController;
+export default ListProductsController;

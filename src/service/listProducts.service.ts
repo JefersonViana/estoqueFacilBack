@@ -12,7 +12,7 @@ class ListProductsService {
 
   public findProducts = async (userId: string): Promise<IResponseObj> => {
     const productsList = await this._listProductsModel.find({ userId });
-    if (!productsList.length) return { code: 404, message: "User doens't have a list yet!" }
+    if (!productsList.length) return { code: 404, message: "User don't have a list yet!" }
     return { code: 200, message: productsList }
   }
 
@@ -25,7 +25,7 @@ class ListProductsService {
       updatedAt: new Date().toISOString()
     });
     if (!productsList) return { code: 500, message: "Error creating list products!" }
-    return { code: 200, message: 'List added to Users list successfully!' }
+    return { code: 200, message: 'List added to User\'s list successfully!' }
   }
 }
 

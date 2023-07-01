@@ -17,10 +17,6 @@ export interface IStoreProductsRequest extends ValidatedRequestSchema {
   }
 };
 
-export const paramsSchemaProducts = Joi.object({
-  idUser: Joi.string().required()
-});
-
 export const bodySchemaProducts = Joi.object({
   productsList: Joi.array().items(
     Joi.object({

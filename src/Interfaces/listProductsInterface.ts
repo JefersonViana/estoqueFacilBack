@@ -9,6 +9,7 @@ export interface IProduct {
 
 export interface IUsersList {
   userId: string;
+  uuidv: string;
   productsList: IProduct[];
   createdAt: Date;
   updatedAt: Date;

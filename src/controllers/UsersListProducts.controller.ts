@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import UsersListProductsService from "../service/UsersListProducts.service";
 import { ValidatedRequest } from "express-joi-validation";
-import { IParamsProductsRequest } from "src/middlewares/usersListValidator";
+import { IParamsProductsRequest } from "../middlewares/usersListValidator";
 
 class UsersListProductsController {
   private usersListProductsService: UsersListProductsService;

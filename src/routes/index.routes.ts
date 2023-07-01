@@ -4,7 +4,7 @@ import UsersListProductsController from "../controllers/UsersListProducts.contro
 import { createValidator } from "express-joi-validation";
 import { bodySchemaLogin, bodySchemaRegister, bodySchemaUpdate, paramsSchemaUpdate } from "../middlewares/usersValidators";
 import { authUser } from "../auth";
-import { paramsSchemaProducts } from "src/middlewares/usersListValidator";
+import { paramsSchemaProducts } from "../middlewares/usersListValidator";
 
 const usersController = new UsersController();
 const usersListProductsController = new UsersListProductsController();

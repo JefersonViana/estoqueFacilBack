@@ -1,7 +1,7 @@
 import { Model } from "mongoose";
 import { IUsersList } from "../Interfaces/usersListProductsInterface";
-import UsersListProductsModel from "src/models/UsersListProducts.model";
-import { IResponseObj } from "src/Interfaces/errorsInterface";
+import UsersListProductsModel from "../models/UsersListProducts.model";
+import { IResponseObj } from "../Interfaces/errorsInterface";
 
 class UsersListProductsService {
   private _usersListProducts: Model<IUsersList>

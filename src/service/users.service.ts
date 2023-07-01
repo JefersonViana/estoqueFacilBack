@@ -1,5 +1,5 @@
 import { Model } from "mongoose";
-import UsersModel from "../models/Users.model";
+import UsersModel from "../models/users.model";
 import { IUpdateUser, IUserRegister, IUsers } from "../Interfaces/usersInterface";
 import { IResponseObj } from "../Interfaces/errorsInterface";
 import { buildUpdateUser, buildUserToDb, checkUser } from "../functions/users";
@@ -24,7 +24,7 @@ class UsersService {
     if (didUserExists.length) return { code: 409, message: 'Email already registered!' };
     const userDb = await buildUserToDb({ name, email, password });
     const didCreate = await this._userModel.create(userDb);
-    if (!didCreate) return { code: 500, message: 'Something went wrong! Try again later.' }
+    if (!didCreate) return { code: 500, message: 'Error registering user! Try again later.' }
     const token = safeUser(didCreate)
     return { code: 200, token }
   }

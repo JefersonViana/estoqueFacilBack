@@ -6,8 +6,8 @@ const Users = new Schema<IUsers>({
   name: { type: String },
   email: { type: String },
   password: { type: String },
-  updatedAt: { type: String },
-  createdAt: { type: String }
+  updatedAt: { type: Date },
+  createdAt: { type: Date }
 }, { versionKey: false });
 
 const UsersModel = model<IUsers>('User', Users, 'Users');

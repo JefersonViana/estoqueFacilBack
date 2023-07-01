@@ -6,8 +6,8 @@ export interface IUsers {
   name: string;
   email: string;
   password: string;
-  updatedAt: string;
-  createdAt: string;
+  updatedAt: Date;
+  createdAt: Date;
 }
 
 export interface IUserRegister {

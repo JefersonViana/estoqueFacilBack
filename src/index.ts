@@ -15,5 +15,5 @@ app.use(router)
 app.use(errorMiddleware)
 
 app.listen(process.env.PORT, () => {
-  console.log('Application started on port 3003!');
+  console.log(`Application started on port ${process.env.PORT}!`);
 });

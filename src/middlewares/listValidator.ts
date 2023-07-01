@@ -17,6 +17,12 @@ export interface IStoreProductsRequest extends ValidatedRequestSchema {
   }
 };
 
+export interface IDeleteProductsRequest extends ValidatedRequestSchema {
+  [ContainerTypes.Query]: {
+    listId: string
+  },
+};
+
 export const bodySchemaProducts = Joi.object({
   productsList: Joi.array().items(
     Joi.object({
@@ -27,3 +33,6 @@ export const bodySchemaProducts = Joi.object({
     })).min(1).required(),
 });
 
+export const querySchemaProducts = Joi.object({
+  listId: Joi.string().uuid().required()
+});

@@ -23,7 +23,7 @@ router.post('/login', validator.body(bodySchemaLogin), usersController.find);
 router.post('/register', validator.body(bodySchemaRegister), usersController.store);
 router.put('/user', authUser, validator.body(bodySchemaUpdate), usersController.update);
 // List Products Route
-router.get('/products', authUser, listProductsController.findProducts);
+router.get('/products', authUser, listProductsController.find);
 router.post('/products', authUser, validator.body(bodySchemaProducts), listProductsController.store);
 router.delete('/products/:listId', authUser, validator.query(querySchemaProducts), listProductsController.delete);
 // Sections Route

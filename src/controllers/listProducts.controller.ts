@@ -8,10 +8,10 @@ class ListProductsController {
   constructor() {
     this.listProductsService = new ListProductsService();
   }
-  public findProducts = async (req: ValidatedRequest<IParamsProductsRequest>, res: Response): Promise<Response> => {
+  public find = async (req: ValidatedRequest<IParamsProductsRequest>, res: Response): Promise<Response> => {
     try { 
       const { idUser } = req.params;
-      const { code, message  } = await this.listProductsService.findProducts(idUser)
+      const { code, message  } = await this.listProductsService.find(idUser)
       if (code !== 200) return res.status(code).json({ message });
       return res.status(code).json({ message });
     } catch (error) {

@@ -10,7 +10,7 @@ class ListProductsService {
     this._listProductsModel = ListProductsModel;
   }
 
-  public findProducts = async (userId: string): Promise<IResponseObj> => {
+  public find = async (userId: string): Promise<IResponseObj> => {
     const productsList = await this._listProductsModel.find({ userId });
     if (!productsList.length) return { code: 404, message: "User don't have a list yet!" };
     return { code: 200, message: productsList };

@@ -6,7 +6,7 @@ export interface IUsers {
   name: string;
   email: string;
   password: string;
-  updatedAt: Date;
+  updatedAt: String;
   createdAt: Date;
 }
 

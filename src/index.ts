@@ -5,7 +5,8 @@ import './database/mongoConfig';
 import errorMiddleware from "./middlewares/errorMiddleware";
 
 const corsOptions = {
-  origin: 'http://localhost:3000'
+  // origin: ['http://localhost:3000', 'http://192.168.5.105:3000']
+  origin: '*'
 };
 
 const app = express()

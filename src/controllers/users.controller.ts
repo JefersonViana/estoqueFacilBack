@@ -37,7 +37,8 @@ class UsersController {
     try {
       const { idUser } = req.params;
       const user = req.body;
-      const { code, token } = await this._usersService.update(idUser, user)
+      const { code, token, message } = await this._usersService.update(idUser, user)
+      if (message) return res.status(code).json({ message })
       return res.status(code).json({ token })
     } catch (error) {
       console.log('error', error)

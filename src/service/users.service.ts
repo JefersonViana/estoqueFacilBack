@@ -31,6 +31,10 @@ class UsersService {
 
   public update = async (id: string, user: IUpdateUser): Promise<IResponseObj> => {
     const updateObj = await buildUpdateUser(user)
+    if (updateObj.email) {
+      const didUserExists = await this._userModel.find({ email: updateObj.email });
+      if (didUserExists.length) return { code: 409, message: 'Email already registered!' };
+    }
     const result = await this._userModel.findOneAndUpdate({ id }, updateObj, { new: true })
     const token = safeUser(result)
     return { code: 200, token }

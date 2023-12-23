@@ -13,6 +13,8 @@ class ListProductsController {
       const { idUser } = req.params;
       const { code, message  } = await this.listProductsService.find(idUser)
       if (code !== 200) return res.status(code).json({ message });
+      console.log('code', code)
+      console.log('message', message)
       return res.status(code).json({ message });
     } catch (error) {
       return res.status(500).json({ message: 'Internal Server error' });

@@ -7,10 +7,15 @@ export interface IProduct {
   quantity: number;
 }
 
+export interface IList {
+  listName: string;
+  products: IProduct[];
+}
+
 export interface IListProduct {
   userId: string;
   uuidv: string;
-  productsList: IProduct[];
+  lists: IList[];
   createdAt: Date;
   updatedAt: Date;
 }

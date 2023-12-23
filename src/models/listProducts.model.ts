@@ -1,10 +1,10 @@
 import { Schema, SchemaDefinitionProperty, model } from "mongoose";
-import { IProduct, IListProduct } from "../Interfaces/listProductsInterface";
+import { IProduct, IListProduct, IList } from "../Interfaces/listProductsInterface";
 
 const ListProductsSchema = new Schema<IListProduct>({
   userId: { type: String },
   uuidv: { type: String },
-  productsList: [Object] as SchemaDefinitionProperty<IProduct[]>,
+  lists: [Object] as SchemaDefinitionProperty<IList[]>,
   updatedAt: { type: Date },
   createdAt: { type: Date }
 }, { versionKey: false });

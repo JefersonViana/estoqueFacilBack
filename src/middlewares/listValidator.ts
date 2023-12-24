@@ -1,6 +1,6 @@
 import { ContainerTypes, ValidatedRequestSchema } from "express-joi-validation";
 import Joi from "joi";
-import { IProduct } from "src/Interfaces/listProductsInterface";
+import { IList, IProduct } from "src/Interfaces/listProductsInterface";
 
 export interface IParamsProductsRequest extends ValidatedRequestSchema {
   [ContainerTypes.Params]: {
@@ -12,9 +12,7 @@ export interface IStoreProductsRequest extends ValidatedRequestSchema {
   [ContainerTypes.Params]: {
     idUser: string
   },
-  [ContainerTypes.Body]: {
-    productsList: Partial<IProduct[]>;
-  }
+  [ContainerTypes.Body]: IList
 };
 
 export interface IDeleteProductsRequest extends ValidatedRequestSchema {
@@ -24,10 +22,11 @@ export interface IDeleteProductsRequest extends ValidatedRequestSchema {
 };
 
 export const bodySchemaProducts = Joi.object({
+  listName: Joi.string().min(1).required(),
   productsList: Joi.array().items(
     Joi.object({
       sequence: Joi.number().required(),
-      sectionId: Joi.number().required(),
+      measure: Joi.string().required(),
       productName: Joi.string().required(),
       quantity: Joi.number().required()
     })).min(1).required(),

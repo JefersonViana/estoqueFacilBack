@@ -13,8 +13,6 @@ class ListProductsController {
       const { idUser } = req.params;
       const { code, message  } = await this.listProductsService.find(idUser)
       if (code !== 200) return res.status(code).json({ message });
-      console.log('code', code)
-      console.log('message', message)
       return res.status(code).json({ message });
     } catch (error) {
       return res.status(500).json({ message: 'Internal Server error' });
@@ -24,11 +22,14 @@ class ListProductsController {
   public store = async (req: ValidatedRequest<IStoreProductsRequest>, res: Response): Promise<Response> => {
     try { 
       const { idUser } = req.params;
-      const { productsList } = req.body;
-      const { code, message  } = await this.listProductsService.store(idUser, productsList)
+      const newList = req.body;
+      console.log('teste', req.body)
+      // return res.status(200).json({ message: 'teste' });
+      const { code, message  } = await this.listProductsService.store(idUser, newList)
       if (code !== 200) return res.status(code).json({ message });
       return res.status(code).json({ message });
     } catch (error) {
+      console.log('error', error)
       return res.status(500).json({ message: 'Internal Server error' });
     }
   }

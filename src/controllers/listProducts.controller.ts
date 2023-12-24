@@ -23,8 +23,6 @@ class ListProductsController {
     try { 
       const { idUser } = req.params;
       const newList = req.body;
-      console.log('teste', req.body)
-      // return res.status(200).json({ message: 'teste' });
       const { code, message  } = await this.listProductsService.store(idUser, newList)
       if (code !== 200) return res.status(code).json({ message });
       return res.status(code).json({ message });

@@ -7,13 +7,13 @@ dotenv.config();
 export const safeUser = (user: IUsers): string => {
   const token = jwt.sign(
     { name: user.name, email: user.email, id: user.id, lastUpdate: user.updatedAt, memberSince: user.createdAt },
-    `${process.env.SECRET}`,
+    `${process.env.SECRET_KEY}`,
     { algorithm: 'HS256', expiresIn: '24h' }
   );
   return token
 }
 
-const decodeToken = (token: string) => jwt.verify(token, `${process.env.SECRET}`) as ICurrentUser;
+const decodeToken = (token: string) => jwt.verify(token, `${process.env.SECRET_KEY}`) as ICurrentUser;
 
 export const authUser = (req: Request, res: Response, next: NextFunction): Response | NextFunction => {
   try {

@@ -25,6 +25,7 @@ router.put('/user', authUser, validator.body(bodySchemaUpdate), usersController.
 // List Products Route
 router.get('/products', authUser, listProductsController.find);
 router.post('/products', authUser, validator.body(bodySchemaProducts), listProductsController.store);
+router.put('/products', authUser, validator.body(bodySchemaProducts), listProductsController.update);
 router.delete('/products/:listId', authUser, validator.query(querySchemaProducts), listProductsController.delete);
 // Sections Route
 router.get('/sections', authUser, sectionsController.find);

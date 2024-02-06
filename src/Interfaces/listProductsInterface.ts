@@ -5,6 +5,7 @@ export interface IProduct {
   measure: string;
   productName: string;
   quantity: number;
+  checked: boolean;
 }
 
 export interface IList {

@@ -32,6 +32,19 @@ class ListProductsController {
     }
   }
 
+  public update = async (req: ValidatedRequest<IStoreProductsRequest>, res: Response): Promise<Response> => {
+    try {
+      const { idUser } = req.params;
+      const newList = req.body;
+      // corrige tipagem de dados aqui NEWLIST
+      const { code, message  } = await this.listProductsService.update(idUser, newList);
+      if (code !== 200) return res.status(code).json({ message });
+      return res.status(code).json({ message });
+    } catch (error) {
+      return res.status(500).json({ message: 'Internal Server error' });
+    }
+  }
+
   public delete = async (req: ValidatedRequest<IDeleteProductsRequest>, res: Response): Promise<Response> => {
     try { 
       const { idUser } = req.params;

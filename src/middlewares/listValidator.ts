@@ -28,7 +28,8 @@ export const bodySchemaProducts = Joi.object({
       sequence: Joi.number().required(),
       measure: Joi.string().required(),
       productName: Joi.string().required(),
-      quantity: Joi.number().required()
+      quantity: Joi.number().required(),
+      checked: Joi.boolean().required(),
     })).min(1).required(),
 });
 

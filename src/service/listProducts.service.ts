@@ -29,6 +29,29 @@ class ListProductsService {
     if (!productsList) return { code: 500, message: "Error creating list products!" };
     return { code: 200, message: 'List added to User\'s list successfully!' };
   }
+  // listProducts está dando ruim na tipagem
+  public update = async (userId: string, listProducts: any): Promise<IResponseObj> => {
+    const productsList = await this._listProductsModel.find({ userId });
+    const listName = listProducts.listName;
+    const newListProduct = listProducts.productsList;
+    const updateListProducts = productsList[0].lists.map((list) => {
+      if (list.listName === listName) {
+        return {
+          listName,
+          productsList: newListProduct,
+        }
+      }
+      return list
+    })
+    const productUpdated = await this._listProductsModel.updateOne({ userId }, {
+      $set: {
+        lists: updateListProducts,
+        updatedAt: new Date().toISOString()
+      }
+    });
+    if (!productUpdated) return { code: 500, message: "Error updating list products!" };
+    return { code: 200, message: 'List updated successfully!' };
+  }
 
   public delete = async (userId: string, listId: string): Promise<IResponseObj> => {
     const productDeleted = await this._listProductsModel.deleteOne({ userId, uuidv: listId });
